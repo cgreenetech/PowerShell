@@ -18,6 +18,9 @@ $scriptContent = @'
 # If the adapter you're wanting to reset isn't "Ethernet" please change the name to the appropriate NIC
 $adapterName = "Ethernet"
 
+# Sleep the script for 60 seconds to ensure that services are up and running before restarting adapter
+Start-Sleep -Seconds 60
+
 # Check if the adapter exists and add a fail safe to just stop the script if it doesn't
 $adapter = Get-NetAdapter -Name $adapterName -ErrorAction SilentlyContinue
 if ($adapter -ne $null) {
